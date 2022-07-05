@@ -6,7 +6,7 @@ Recuerda que el objetivo de este test es tener una idea de tus conocimientos en 
 
 Un desarrollador experimentado necesita aproximadamente de 2 a 3 horas para realizar todos los ejercicios.
 
-Cuando termines, por favor envía un correo electrónico a alexander@onegroupitservices.com, con tu respuesta en el repositorio en github asignado.
+Cuando termines, por favor envía un correo electrónico a luis.hurtado@onegroupit.com, con tu respuesta en el repositorio en github asignado.
 
 Crear un commit por cada ejercicio y realizar el respectivo pull request a la rama develop
 
