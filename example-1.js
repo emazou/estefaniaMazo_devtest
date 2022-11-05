@@ -1,7 +1,7 @@
 import {createAll, cleanConsole} from './data';
 const companies = createAll();
 
-cleanConsole(1, companies);
+cleanConsole(1, firstExample(companies));
 
 console.log('---- EXAMPLE 1 --- ', companies);
 
@@ -16,12 +16,27 @@ console.log('---- EXAMPLE 1 --- ', companies);
 // Las "companies" deben ordenarse por su total de "user" (orden decreciente)
 // y los "users" de cada "company" deben aparecer en orden alfabético.
 
-// -----------------------------------------------------------------------------
-// INSTRUCTIONS IN ENGLISH
+function firstExample(array) {
+  return array.map((company) => {
+    const updateCompany = {...company};
+    updateCompany.name = capitalize(updateCompany.name);
+    updateCompany.users = updateCompany.users.map((user) => {
+      const updateUser = {...user};
+      updateUser.firstName = updateName(updateUser.firstName);
+      updateUser.lastName = updateName(updateUser.lastName);
+      return {...updateUser};
+    }).sort((a, b) => a.firstName.localeCompare(b.firstName));
+    return {...updateCompany};
+  }).sort((a, b) => b.usersLength - a.usersLength);
+}
 
-// Create a function taking the variable "companies" as a parameter and replacing
-// all values "undefined" in "users" by an empty string.
-// The name of each "company" must have a capital letter at the beginning as well as
-// the last name and first name of each "user".
-// The "companies" must be sorted by their number of "user" (decreasing order)
-// and the "users" of each "company" must be listed in alphabetical order
+function capitalize(text) {
+  return text[0].toUpperCase() + text.slice(1);
+}
+function updateName(name) {
+  if (!name) {
+    return '';
+  } else {
+    return capitalize(name);
+  };
+}
