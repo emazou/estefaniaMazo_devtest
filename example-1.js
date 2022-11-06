@@ -1,11 +1,29 @@
 import {createAll, cleanConsole} from './data';
 const companies = createAll();
 
-cleanConsole(1, firstExample(companies));
+cleanConsole(1, example1(companies));
 
 console.log('---- EXAMPLE 1 --- ', companies);
 
-
+function example1(array) {
+  return array.map((company) => {
+    const updateCompany = {...company};
+    updateCompany.name = updateCompany.name[0].toUpperCase() + updateCompany.name.slice(1);
+    updateCompany.users = updateCompany.users.map((user) => {
+      const updateUser = {...user};
+      Object.entries({...updateUser}).forEach(([key, value])=>{
+        if (value === undefined) {
+          updateUser[key] = '';
+        };
+        if (typeof value === 'string') {
+          updateUser[key] = updateUser[key][0].toUpperCase() + updateUser[key].slice(1);
+        };
+      });
+      return {...updateUser};
+    }).sort((a, b) => a.firstName.localeCompare(b.firstName));
+    return {...updateCompany};
+  }).sort((a, b) => b.usersLength - a.usersLength);
+}
 // -----------------------------------------------------------------------------
 // INSTRUCCIONES EN ESPAÑOL
 
@@ -15,28 +33,3 @@ console.log('---- EXAMPLE 1 --- ', companies);
 // el apellido y el nombre de cada "user".
 // Las "companies" deben ordenarse por su total de "user" (orden decreciente)
 // y los "users" de cada "company" deben aparecer en orden alfabético.
-
-function firstExample(array) {
-  return array.map((company) => {
-    const updateCompany = {...company};
-    updateCompany.name = capitalize(updateCompany.name);
-    updateCompany.users = updateCompany.users.map((user) => {
-      const updateUser = {...user};
-      updateUser.firstName = updateName(updateUser.firstName);
-      updateUser.lastName = updateName(updateUser.lastName);
-      return {...updateUser};
-    }).sort((a, b) => a.firstName.localeCompare(b.firstName));
-    return {...updateCompany};
-  }).sort((a, b) => b.usersLength - a.usersLength);
-}
-
-function capitalize(text) {
-  return text[0].toUpperCase() + text.slice(1);
-}
-function updateName(name) {
-  if (!name) {
-    return '';
-  } else {
-    return capitalize(name);
-  };
-}
