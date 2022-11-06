@@ -5,8 +5,8 @@ cleanConsole(1, example1(companies));
 
 console.log('---- EXAMPLE 1 --- ', companies);
 
-export function example1(array) {
-  return array.map((company) => {
+export function example1(companies) {
+  return companies.map((company) => {
     const updateCompany = {...company};
     updateCompany.name = updateCompany.name[0].toUpperCase() + updateCompany.name.slice(1);
     updateCompany.users = updateCompany.users.map((user) => {
