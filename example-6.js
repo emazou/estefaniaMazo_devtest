@@ -1,11 +1,17 @@
 import {cleanConsole, createAll} from './data';
-
+import {example1} from './example-1';
+import {example4} from './example-4';
 const companies = createAll();
-
 cleanConsole(6, companies);
 console.log('---- EXAMPLE 6 --- ', companies);
-
-
+console.log('Example 6', example6(companies));
+export function example6(companies) {
+  const object = {};
+  example4(example1(companies)).forEach((user) =>{
+    object[`${user.firstName}${user.lastName}${user.age}`] = user.car;
+  });
+  return object;
+}
 // -----------------------------------------------------------------------------
 // INSTRUCCIONES EN ESPAÑOL
 
