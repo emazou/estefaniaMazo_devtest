@@ -1,24 +1,14 @@
 import {cleanConsole, createAll} from './data';
+import {example1} from './example-1';
 import {example4} from './example-4';
 const companies = createAll();
 cleanConsole(6, companies);
 console.log('---- EXAMPLE 6 --- ', companies);
 console.log('Example 6', example6(companies));
-
 export function example6(companies) {
   const object = {};
-  example4(companies).forEach((user, index) => {
-    if (!user.firstName && !user.lastName) {
-      object[`user${index}Age${user.age}`] = user.car;
-    } else if (!user.lastName) {
-      object[`${user.firstName}${user.age}`] = user.car;
-    } else if (!user.firstName) {
-      object[`${user.lastName}${user.age}`] = user.car;
-    } else if (!object[`${user.firstName}${user.firstName}${user.age}`]) {
-      object[`${user.firstName}${user.firstName}${user.age}`] = user.car;
-    } else if (!!object[`${user.firstName}${user.firstName}${user.age}`]) {
-      object[`${user.firstName}${index}${user.firstName}${user.age}`] = user.car;
-    }
+  example4(example1(companies)).forEach((user) =>{
+    object[`${user.firstName}${user.lastName}${user.age}`] = user.car;
   });
   return object;
 }
