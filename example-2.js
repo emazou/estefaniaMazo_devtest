@@ -1,10 +1,18 @@
 import {cleanConsole, createAll} from './data';
 const companies = createAll();
 
-cleanConsole(2, companies);
+cleanConsole(2, example2(companies, true));
 
 console.log('---- EXAMPLE 2 --- ', companies);
 
+export function example2(companies, hasCar) {
+  return companies.map((company) => {
+    const updateCompany = {...company};
+    updateCompany.users = updateCompany.users.filter((user)=> user.car === hasCar);
+    updateCompany.usersLength = updateCompany.users.length;
+    return updateCompany;
+  });
+}
 
 // -----------------------------------------------------------------------------
 // INSTRUCCIONES EN ESPAÑOL

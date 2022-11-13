@@ -1,10 +1,20 @@
 import {cleanConsole, createAll} from './data';
-
+import {example1} from './example-1';
 const companies = createAll();
 
-cleanConsole(3, companies);
+cleanConsole(3, example3(example1(companies)));
 
+console.log('---- EXAMPLE 3 --- values before your modifications  :', example3(example1(companies)));
 console.log('---- EXAMPLE 3 --- ', companies);
+
+export function example3(companies) {
+  const patron = /^[A-Z]/;
+  return companies.every((company) => {
+    return patron.test(company.name) && (company.users.every((user) => (
+      patron.test(user.firstName) && patron.test(user.lastName)
+    )));
+  });
+}
 
 // -----------------------------------------------------------------------------
 // INSTRUCCIONES EN ESPAÑOL
